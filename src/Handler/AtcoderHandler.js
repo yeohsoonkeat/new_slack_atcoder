@@ -63,8 +63,7 @@ class AtcoderHandler {
     // done test
     const html = await this._getPage()
     const $ = cheerio.load(html)
-    // const latest_contest = new Date($("#contest-table-recent > div > div > table > tbody > tr:nth-child(1) > td:nth-child(1)").text())
-    const latest_contest = new Date("2020-07-19 22:45:00+0700")
+    const latest_contest = new Date($("#contest-table-recent > div > div > table > tbody > tr:nth-child(1) > td:nth-child(1)").text())
     latest_contest.setMinutes(latest_contest.getMinutes() + latest_contest.getTimezoneOffset())
     latest_contest.setMinutes(latest_contest.getMinutes() + TIMEOFSET)
     const duration = $("#contest-table-recent > div > div > table > tbody > tr:nth-child(1) > td:nth-child(3)").text()

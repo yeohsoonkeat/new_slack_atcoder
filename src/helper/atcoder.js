@@ -35,7 +35,6 @@ const contest_rated = (latest_contest) => {
     const dateObj = new Date()
     dateObj.setMinutes(dateObj.getMinutes()+dateObj.getTimezoneOffset())
     dateObj.setMinutes(dateObj.getMinutes() + TIMEOFSET)
-    console.log(dateObj.toDateString(), latest_contest.toDateString())
     if (dateObj.toDateString() !== latest_contest.toDateString()) {
         return false
     } else {
