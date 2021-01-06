@@ -50,7 +50,7 @@ class Sheet {
         for (const group of usergroups) {
             const members = slack[group]
             const data = await this.DOP.getStudentInBulkForSheet(members)
-            await this.updateSheet([header, data], group)
+            await this.updateSheet([header, ...data.map(x => Object.values(x))], group)
         }
         console.log("Done Update subteam")
     }

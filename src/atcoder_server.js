@@ -48,7 +48,7 @@ app.error(err => console.log(err))
 app.start(PORT || 3000).then(() => console.log("bolt running"))
 
 // Serves public on root route
-app.receiver.app.get("/", (_, res) => res.sendFile(path.join(__dirname + '/public/index.html')))
+app.receiver.app.get("/atcoder", (_, res) => res.sendFile(path.join(__dirname + '/public/index.html')))
 
 
 

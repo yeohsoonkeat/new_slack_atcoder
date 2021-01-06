@@ -139,7 +139,7 @@ class EventHandler {
             })
             const detail = await this.AOP.getDetails(atcoder_username)
 	    let current_score, highest_score, num_competitions, recent_competion
-	    [, current_score, highest_score, , num_competitions, recent_competion] = !detail ? [0,0,0,0,0,null]: detail
+	    [, current_score, highest_score, , num_competitions, recent_competion] = !detail ? [0,0,0,0,0,false]: detail
             const record = {
                 slack_id: body.user.id,
                 atcoder_username,
@@ -147,10 +147,11 @@ class EventHandler {
                 highest_score,
                 current_score,
                 num_competitions,
-                recent_competion: new Date(recent_competion)
+                recent_competion: !recent_competion?'None':new Date(recent_competion)
             }
-            await this.DOP.studentUpsert(record)
-            this.sheet.fullupdate()
+            await this.DOP.studentUpsert(record)
+            // update only connected sheet for now in case of traffic
+            this.sheet._updateAllConnected()
         } else {
             ack({
                 response_action: "push",
