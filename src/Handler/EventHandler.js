@@ -50,9 +50,16 @@ class EventHandler {
                 return
             }
 
-            if (text.match(/tosheet/gi)) {
+            else if (text.match(/tosheet/gi)) {
                 this.sheet.fullUpdate()
                 return
+            }
+            else if (text.match(/updateDB/gi)) {
+	      const should_update = await this.AOP.should_update_sheet()
+              console.log("should updatedb: "+should_update)
+              if (should_update) {
+                this.sheet.fullUpdate()
+              }
             }
 
             else if (text.match(/subteam\^/gi)) {

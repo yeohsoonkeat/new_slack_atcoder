@@ -77,7 +77,7 @@ class AtcoderHandler {
     const html = await this._getPage(`users/${user}`)
     const $ = cheerio.load(html)
     const k = $('#main-container > div.row > div.col-md-9.col-sm-12 > table tr').text()
-    return k.replace(/\n|\t|\([\+1-9a-z\s]+\)/g,'').match(/\s?([0-9]+\/?[0-9]*\/?[0-9]*)/g)
+    return k.replace(/\n|\t|\([\+0-9a-z\s]+\)/g,'').match(/\s?([0-9]+\/?[0-9]*\/?[0-9]*)/g)
   }
 
   async getStudentList(members) {
